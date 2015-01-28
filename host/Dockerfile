@@ -13,8 +13,6 @@ RUN chef-solo -r https://github.com/conjur-cookbooks/conjur-ssh/releases/downloa
 RUN /opt/chef/embedded/bin/gem install netrc --no-rdoc --no-ri
 
 # Add scripts to finish the SSH configuration
-ADD conjurize.sh /conjurize.sh
-RUN chmod 0500   /conjurize.sh
 ADD configure-ssh.sh /etc/my_init.d/10_configure-ssh.sh
 
 # Cleanup

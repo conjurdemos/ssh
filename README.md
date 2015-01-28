@@ -13,12 +13,8 @@ Create a host:
 
 Prepare a host configuration script:
 
-    $ cat host.json | conjurize > host/conjurize.sh
-
-Extract the `login` and `api_key`:
-
-    $ host_id=`cat host.json | jsonfield id`
-    $ host_api_key=`cat host.json | jsonfield api_key`
+    $ cat host.json | conjurize > conjurize.sh
+    $ chmod a+x conjurize.sh
 
 Build the image:
 
@@ -27,18 +23,19 @@ Build the image:
 Add your SSH key to Conjur. This step assumes that your Conjur login name is the same as the
 $USER environment variable.
 
-*Note* By default, SSH will use your SSH key in `~/.ssh/id_rsa`. If you don't have an SSH key there, you should
+**Note** By default, SSH will use your SSH key in `~/.ssh/id_rsa`. If you don't have an SSH key there, you should
 create one. GitHub provides [good documentation on how to create an SSH key](https://help.github.com/articles/generating-ssh-keys/).
-
-Then load your public key into Conjur:
 
     $ conjur pubkeys add $USER @~/.ssh/id_rsa.pub
 
 ## Run the target machine
     
-Run the application container:
+Run the application container, passing its identity credentials:
 
-    $ docker run -it -e CONJUR_AUTHN_LOGIN=host/$host_id -e CONJUR_AUTHN_API_KEY=$host_api_key -p 2200:22 conjur-ssh
+    $ docker run -it \
+      -v $PWD/conjurize.sh:/conjurize.sh
+      -p 2200:22 \
+      conjur-ssh
 
 ## Login
 
