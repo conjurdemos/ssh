@@ -33,7 +33,7 @@ create one. GitHub provides [good documentation on how to create an SSH key](htt
 Run the application container, passing its identity credentials:
 
     $ docker run -it \
-      -v $PWD/conjurize.sh:/conjurize.sh
+      -v $PWD/conjurize.sh:/conjurize.sh \
       -p 2200:22 \
       conjur-ssh
 
@@ -53,7 +53,6 @@ Obtain the application hostname:
 Login:
 
     $ ssh -p 2200 $hostname
-    # ... a brief pause ...
     
 ### Boot2Docker
 
@@ -61,7 +60,7 @@ Login:
 
 ## Logged in
 
-Now you're logged in to the target machine! You can inspect your uid and group membership
+Now you're logged in to the target machine! You can inspect your uid and primary group
 using the `id` command:
 
     kgilpin@b7699cfc62a4:/$ id
