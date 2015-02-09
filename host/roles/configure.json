@@ -3,6 +3,7 @@
   "chef_type": "role",
   "json_class": "Chef::Role",
   "run_list": [
-    "terminal-login::configure"
+    "terminal-login::configure",
+    "terminal-login::logshipper"
   ]
 }
