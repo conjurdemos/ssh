@@ -15,8 +15,5 @@ RUN /opt/chef/embedded/bin/gem install netrc --no-rdoc --no-ri
 # Add scripts to finish the SSH configuration
 ADD configure-ssh.sh /etc/my_init.d/10_configure-ssh.sh
 
-# Cleanup
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 # Standard image entry point
 CMD ["/sbin/my_init"]
