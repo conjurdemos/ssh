@@ -46,13 +46,9 @@ using a machine with native Docker support, or you're using Boot2Docker.
 
 ### Native (Linux)
 
-Obtain the application hostname:
-
-    $ hostname=`docker inspect conjur-ssh | grep IPAddress | cut -d '"' -f 4`
-
 Login:
 
-    $ ssh -p 2200 $hostname
+    $ ssh -p 2200 localhost
     
 ### Boot2Docker
 
