@@ -11,6 +11,11 @@ Create a host:
 
     $ conjur host create $USER/conjurdemos/ssh | tee host.json
 
+Make sure there is a Conjur user for you and allow it to login:
+
+    $ conjur user create $USER
+    $ conjur resource permit host:$USER/conjurdemos/ssh user:$USER execute
+
 Prepare a host configuration script:
 
     $ cat host.json | conjurize > conjurize.sh
