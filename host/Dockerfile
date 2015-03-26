@@ -12,8 +12,11 @@ ADD roles /var/chef/roles
 RUN chef-solo -r https://github.com/conjur-cookbooks/conjur-ssh/releases/download/v1.2.5/conjur-ssh-v1.2.5.tar.gz -o role[install]
 RUN /opt/chef/embedded/bin/gem install netrc --no-rdoc --no-ri
 
-# Add scripts to finish the SSH configuration
-ADD configure-ssh.sh /etc/my_init.d/10_configure-ssh.sh
-
 # Standard image entry point
 CMD ["/sbin/my_init"]
+
+# Enable the ssh daemon
+RUN rm /etc/service/sshd/down
+
+# Add script to finish the SSH configuration
+ADD configure-ssh.sh /etc/my_init.d/10_configure-ssh.sh
