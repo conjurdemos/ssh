@@ -20,3 +20,7 @@ RUN rm /etc/service/sshd/down
 
 # Add script to finish the SSH configuration
 ADD configure-ssh.sh /etc/my_init.d/10_configure-ssh.sh
+
+# Add logshipper support files
+ADD logshipper.conf /etc/syslog-ng/conf.d/logshipper.conf
+ADD logshipper.sh /etc/service/logshipper/run
