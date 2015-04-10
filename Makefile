@@ -1,6 +1,4 @@
-.PHONY: all ssh
+.PHONY: init
 
-all: ssh
-
-ssh:
-	docker build -t conjur-ssh host
+init:
+	bash init.sh
