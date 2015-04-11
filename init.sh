@@ -14,5 +14,10 @@ if [ $(conjur resource exists group:developers) = false ]; then
 fi
 conjur group members add -a developers daniel
 
+ssh-keygen -t rsa -C "daniel@conjur-demo" -f id_rsa_daniel -N ''
+
+conjur pubkeys add daniel @id_rsa_daniel.pub
+
 apikey=$(cat daniel.json | jsonfield api_key)
 conjur authn login -p ${apikey} -u daniel
+

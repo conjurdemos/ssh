@@ -1,0 +1,15 @@
+{
+  "name": "conjur-install",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "override_attributes": {
+    "conjur": {
+      "service_provider": "runit",
+      "syslog_provider": "syslog-ng"
+    }
+  },
+  "run_list": [
+    "recipe[conjur::install]"
+  ]
+}
+
