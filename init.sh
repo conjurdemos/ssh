@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 if ! conjur authn whoami &> /dev/null || [ $(conjur authn whoami | jsonfield username) != demo ]; then
-  conjur authn login demo
+  conjur authn login -u demo -p demo
 fi
 
 ./init.rb
